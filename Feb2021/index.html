@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Form Greeting</title>
+</head>
+<body>
+  
+  <form>
+    <label>First Name</label>
+    <input type="text" name="firstName">
+
+    <label>Last Name</label>
+    <input type="text" name="lastName">
+
+    <button type="submit">Enter</button>
+  </form>
+
+  <h1>Result:</h1>
+
+  <script>
+
+    // declare a variable which is assigned the <h1> element
+    const output = document.querySelector('h1');
+
+    // declare a variable which is assigned the <form> element
+    const form = document.querySelector('form');
+
+    // when Enter button is clicked, the values of the HTML firstName and lastName inputs are assigned to the variables firstName and lastName
+    form.addEventListener ('submit', function(event) {
+
+      // Not sure what this does
+      event.preventDefault();
+
+      // Declaring and assigning the HTML inputs to the JS variables
+      // using let declarations so that variables can be reassigned if no input is given
+      let firstName = form.firstName.value;
+      let lastName = form.lastName.value;
+
+      console.log(firstName);
+
+      // Check for no input from user
+      if (firstName === ""){
+      firstName = "John";
+      }
+
+      if (lastName === ""){
+      lastName = "Doe";
+      }
+
+      // code to place text into the innerHTML of output, which is assigned the <h1> element
+      // this puts the text into the <h1> element for display in the browser window
+      output.innerHTML = (`Hello, ${firstName} ${lastName}.`)
+
+    });
+
+  </script>
+
+</body>
+</html>
