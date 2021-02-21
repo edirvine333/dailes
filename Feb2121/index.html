@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>8 Sided Die - Random Number Generator</title>
+
+</head>
+
+<body>
+  
+  <h1>Roll 1D8 to determine the damage done by your Sword of Truth!!!</h1>
+
+  <style>                                                 /*  places the damage directly after the Damage: label */
+      .op1 {                                              /*  sets font-sizes                                    */
+      display: inline;
+      font-size: 20px;
+      }
+      .op2 {
+        font-size: 36px;
+        color: red;
+      }
+      label {
+        font-size: 24px;
+      }
+
+
+  </style>
+
+  <label>Damage: </label>
+  <p class="op1"></p>
+  <p class="op2"></p>
+
+  <script>
+    const num1 = [1,2,3,4,5,6,7,8];
+    const randNum = Math.random();                        //  Math.random() returns a random number between 0 and 1
+    const numBetween = Math.random() * num1.length+1;     //  multiples the length of the array by the random number (which is between 0 and 1)
+                                                          //  using num1.length+1 to multiply the random number times the number of items plus one, therefore allowing for the number 4 to be an option
+
+    let roundedNum = Math.floor(numBetween)               //  rounds the number down each (always down, never up)
+
+    if (roundedNum === 0) {                               //  if statement to account for 0 coming up as the random number
+      roundedNum = Math.floor(numBetween+1);              //  if the rounded number is 0, then rounded number is the rounded value of the numBetween +1
+    }                                                     // in this way, numBetween is never 0, which would round to 0 using Math.floor ()
+
+   let output1 = document.querySelector('.op1');          //  declares the output variable and assigns the HTML element with the class shown
+   let output2 = document.querySelector('.op2')           //  using let because I am assigning to the variables
+
+    // console.log(num1[2]);                              //  console logs for testing purposes
+    // console.log(randNum);
+    // console.log(numBetween);
+    // console.log(roundedNum);
+
+    output1.innerHTML = roundedNum;                       //  sets the innerHTML of output to the random number, then that ends up in the <p> element
+
+  if (roundedNum >= 5) {                                  //  if 5 or more is rolled, the beast is slain!!
+    output2.innerHTML = "The beast has been slain!!";
+  }
+
+  else {
+    output2.innerHTML = "Roll again to inflict more damage!!";
+  }
+  </script>
+
+</body>
+
+</html>
