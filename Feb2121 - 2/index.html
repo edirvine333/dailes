@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Game</title>
+</head>
+<body>
+  
+  <style>
+
+    body {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+
+      background-color: rgb(77, 73, 73);
+      color: goldenrod;
+    }
+
+    h1 {
+      max-width: 20ch;
+    }
+
+    svg {
+      height: 50vh;
+      padding: 2rem;
+    }
+
+    text {
+      position: relative;
+      font-size: 36px;
+    }
+    
+    button {
+      width: 10rem;
+      font-size: 20px;
+      border-radius: 25px;
+      margin: auto;
+    }
+
+    p {
+      display: inline;
+      font-size: 24px;
+    }
+
+  </style>
+
+  <h1>Roll three times. If your total is more than 15, you win the prize!!</h1>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="237.16" height="237.16" viewBox="0 0 62.75 62.75"><path d="M62.4 18.36l.11 25.75-18.12 18.3-25.76.1L.35 44.4.23 18.63 18.36.35 44.11.23z" fill="#449344" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><text fill="white" class="dieNumber" x="23" y="42">1</text></svg>
+ 
+  <button type="submit">Roll the Dice</button>
+
+  <p class="output"></p>
+  <p class="finalOutput"></p>
+
+  <script>
+    'use strict'
+
+    const dieNum = document.querySelector('text');
+    const button = document.querySelector('button');
+
+    let rollNum = 0;
+    let total = 0;
+
+    button.addEventListener('click', function() {
+
+      const num1 = [1,2,3,4,5,6,7,8];
+      const randNum = Math.random();
+      const numBetween = Math.random()*num1.length+1;
+      let roundedNum = Math.floor(numBetween);
+
+      const output = document.querySelector('.output');
+      let outputVariable = "";
+      let finalOutput = document.querySelector('.finalOutput');
+
+      dieNum.innerHTML = roundedNum;
+
+      rollNum++;
+      total = total + roundedNum;
+
+      output.innerHTML = total;
+
+      if (rollNum === 3) {
+        if (total > 15) {
+          outputVariable = "You win the prize!!";
+        } else {
+          outputVariable = "Sorry, you lose!!";
+        }
+
+      finalOutput.innerText = outputVariable;
+      }
+
+      else if (rollNum > 3) {
+        location.reload();            // resets browser 
+      }
+   
+    });
+
+</script>
+
+</body>
+</html>
