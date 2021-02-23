@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Game</title>
+</head>
+<body>
+
+  <h1>The Good Guys</h1>
+  <p class="good_team"></p>
+
+  <h1>Team Evil</h1>
+  <p class="evil_team"></p>
+
+  <h2>The Battlefield</h2>
+  <p class="output1"></p>
+  <h3>VS</h3>
+  <p class="output2"></p>
+
+  <button>Click to Battle!!</button>
+
+  <p class="output3"></p>
+  <p class="finaloutput"></p>
+
+  <script>
+    'use strict'
+
+    const good = ["Elven Archers", "Dwarven Battalions", "Human Infantries"];
+    const evil = ["Orcish Hordes", "Troll Brigades", "Goblin Tribes"];
+
+    const goodTeam = document.querySelector('.good_team');
+    const evilTeam = document.querySelector('.evil_team');
+
+    const output1 = document.querySelector('.output1');
+    const output2 = document.querySelector('.output2');
+    const output3 = document.querySelector('.output3');
+    const finalOutput = document.querySelector('.finaloutput');
+    const button = document.querySelector('button');
+    
+    let rand1 = Math.floor((Math.random() * good.length));
+    let rand2 = Math.floor((Math.random() * evil.length));
+
+    goodTeam.innerHTML = good.join(", ");
+    evilTeam.innerHTML = evil.join(", ");
+
+    output1.innerHTML = good[rand1];
+    output2.innerHTML = evil[rand2];
+
+    button.addEventListener('click', function() {
+    
+      // battle outcome determinators...  highest number wins
+      const randGood = Math.random();
+      const randEvil = Math.random();
+
+      //  battle conditional
+      if (randGood > randEvil) {
+      output3.innerHTML = (`The ${good[rand1]} have triumphed over the ${evil[rand2]}!!`);
+      evil.splice(rand2, 1);  // remove the loser
+
+      }
+
+      else {
+      output3.innerHTML = (`The ${evil[rand2]} have decimated the ${good[rand1]}!!`);
+      good.splice(rand1, 1);  //  remove the loser
+    
+      } 
+
+      if (good.length === 0) {
+        good[0] = "Defeated";
+        finalOutput.innerHTML = "Evil has triumphed!!  Refresh to start again!!";
+      }
+
+      if (evil.length === 0) {
+        evil[0] = "Defeated";
+        finalOutput.innerHTML = "Good is victorious!!  Refresh to start again!!";
+      }
+
+      rand1 = Math.floor((Math.random() * good.length));
+      rand2 = Math.floor((Math.random() * evil.length));
+
+      goodTeam.innerHTML = good.join(", ");
+      evilTeam.innerHTML = evil.join(", ");
+      output1.innerHTML = good[rand1];
+      output2.innerHTML = evil[rand2];
+    
+    });
+
+  </script>
+  
+</body>
+</html>
