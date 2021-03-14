@@ -1,6 +1,6 @@
 const endpoint = 'url'                  // convention to assign the url to a variable called endpoint
 
-fetch(endpoint)                            // insert resource https
+fetch(endpoint)                         // invokes the fetch() function, which is passed the endpoint as an argument
 
   .then(function(response) {                    
                                         //  404 Not Found responses must be addressed in the first .then()
